@@ -12,14 +12,29 @@ export default function App() {
   };
   return (
     <View style={styles.container}>
-      <Text>Linux Reads</Text>
-      <Button onClick={openBookInput}/>
+      <Text style={styles.title}>Title</Text>
+      <View style={styles.buttonContainer}>
+        <Button onClick={openBookInput} />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff'
+    flex: 1,
+    backgroundColor: '#fff',
+    marginTop: 50,
+  },
+  title: {
+    flex: 1,
+    fontSize: 24,
+    margin: 40,
+  },
+  buttonContainer: {
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    marginBottom: 40,
+    marginRight: 30,
   },
 });
