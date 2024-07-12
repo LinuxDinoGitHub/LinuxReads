@@ -1,12 +1,15 @@
 import {React} from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 const Book = props => {
     return (
-        <View>
-            
+        <View style={styles.container}>
+
         </View>
     );
 }
 
+const styles = StyleSheet.create({
+    container:{},
+})
 export default Book;

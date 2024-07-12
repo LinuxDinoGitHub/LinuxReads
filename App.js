@@ -3,20 +3,20 @@ import {React, useState} from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Button from "./components/Button";
 import InputMenu from "./components/InputMenu";
-import BookCreation from "./components/BookCreation";
+
 
 
 export default function App() {
   const [books, setBooks] = useState([]);
-  const [menuStatus, setMenuStatus] = useState('none');
+  const [visible, setvisible] = useState(false);
   const openBookInput = () => {
-    setMenuStatus('flex');
-    console.log('opened menu');
+    setvisible(!visible);
+    console.log(visible);
   };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Linux Reads</Text>
-      <InputMenu event={openBookInput} style={[styles.inputMenu, { display: menuStatus }]}/>
+      <InputMenu event={openBookInput} style={visible ? styles.show: styles.hide}/>
       <View style={styles.buttonContainer}>
         <Button onClick={openBookInput} />
       </View>
@@ -40,7 +40,10 @@ const styles = StyleSheet.create({
     bottom: 40,
     right: 30,
   },
-  inputMenu: {
-    display: 'none',
+  show: {
+    display: 'flex',
   },
+  hide: {
+    display: 'none',
+  }
 });

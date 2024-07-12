@@ -1,7 +1,7 @@
 import {React} from "react";
 import { TouchableOpacity, View, StyleSheet , Text, TouchableWithoutFeedback, TextInput} from "react-native";
 import InputField from "./InputField";
-
+import BookCreation from "./BookCreation";
 const InputMenu = (props) => {
     /* Book name (Selection) if new book -> BookCreation.js
     Current page (int input)
@@ -10,7 +10,7 @@ const InputMenu = (props) => {
     Submit button
     */
     return (
-    <View>
+    <View style={props.style}>
         <InputField title="Book Name" placeholder="Note that you have to add your book in the previous page first to choose here" multiline={true} height={40}/>
         <InputField title="Current page" placeholder=" " multiline={false} height={20}/>
         <InputField title="Time spent reading" placeholder="Time in minutes" multiline={false} height={20}/>

@@ -4,7 +4,7 @@ import InputField from "./InputField";
 
 const BookCreation = props => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, props.style]}>
         <Text style={styles.title}>Create New Book Diary</Text>
             <InputField title="New book name" placeholder="Enter title of your book" multiline={true} height={20}/>
         </View>
