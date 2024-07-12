@@ -13,10 +13,10 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Title</Text>
+      <InputMenu event={openBookInput}/>
       <View style={styles.buttonContainer}>
         <Button onClick={openBookInput} />
       </View>
-      <InputMenu />
     </View>
   );
 }
