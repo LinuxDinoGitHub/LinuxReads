@@ -1,19 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import {React, useState} from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Button from "./components/Button"
-import InputMenu from "./components/InputMenu"
+import Button from "./components/Button";
+import InputMenu from "./components/InputMenu";
+import BookCreation from "./components/BookCreation";
 
 
 export default function App() {
   const [books, setBooks] = useState([]);
+  const [menuStatus, setMenuStatus] = useState('none');
   const openBookInput = () => {
-    console.log("yes");
+    setMenuStatus('flex');
+    console.log('opened menu');
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Title</Text>
-      <InputMenu event={openBookInput}/>
+      <Text style={styles.title}>Linux Reads</Text>
+      <InputMenu event={openBookInput} style={[styles.inputMenu, { display: menuStatus }]}/>
       <View style={styles.buttonContainer}>
         <Button onClick={openBookInput} />
       </View>
@@ -25,17 +28,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    marginTop: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   title: {
-    flex: 1,
     fontSize: 24,
-    margin: 40,
+    marginBottom: 40,
   },
   buttonContainer: {
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    marginBottom: 40,
-    marginRight: 30,
+    position: 'absolute',
+    bottom: 40,
+    right: 30,
+  },
+  inputMenu: {
+    display: 'none',
   },
 });

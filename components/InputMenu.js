@@ -1,31 +1,20 @@
 import {React} from "react";
 import { TouchableOpacity, View, StyleSheet , Text, TouchableWithoutFeedback, TextInput} from "react-native";
+import InputField from "./InputField";
 
 const InputMenu = (props) => {
-    /* Book name (Selection) if new book -> BookSelection.js
+    /* Book name (Selection) if new book -> BookCreation.js
     Current page (int input)
     Time spent reading
     Entry comments (text area)
     Submit button
     */
     return (
-    <View style={styles.menu}>
-        <Text>Book name</Text>
-        <View style={styles.inputField}>
-            <TextInput placeholder="Book name"></TextInput>
-        </View>
-        <Text>Current page</Text>
-        <View style={styles.inputField}>
-            <TextInput placeholder="P. "></TextInput>
-        </View>
-        <Text>Time spent reading</Text>
-        <View style={styles.inputField}>
-            <TextInput placeholder="Time in minutes"></TextInput>
-        </View>
-        <Text>Entry comments</Text>
-        <View style={styles.inputField}>
-            <TextInput placeholder="Entry comments"></TextInput>
-        </View>
+    <View>
+        <InputField title="Book Name" placeholder="Note that you have to add your book in the previous page first to choose here" multiline={true} height={40}/>
+        <InputField title="Current page" placeholder=" " multiline={false} height={20}/>
+        <InputField title="Time spent reading" placeholder="Time in minutes" multiline={false} height={20}/>
+        <InputField title="Entry comments" placeholder="Enter your thoughts about the book here!" multiline={true} height={100}/>
         <TouchableOpacity style={styles.submitButton} onPress={props.event}>
             <Text style={styles.submitButtonText}>Submit</Text>
         </TouchableOpacity>
@@ -33,20 +22,6 @@ const InputMenu = (props) => {
     )
 };
 const styles = StyleSheet.create({
-    inputField: {
-        width: '80%',
-        height: 40,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
-        paddingHorizontal: 10,
-        marginVertical: 10,
-    },
-    menu: {
-        margin: 10,
-        flex: 1,
-        alignContent: 'center',
-    },
     submitButton: {
         backgroundColor: '#007bff',
         paddingVertical: 12,
