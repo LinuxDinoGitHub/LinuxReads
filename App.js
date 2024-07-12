@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import {React, useState} from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Button from "./components/Button"
-
+import InputMenu from "./components/InputMenu"
 
 
 export default function App() {
@@ -16,6 +16,7 @@ export default function App() {
       <View style={styles.buttonContainer}>
         <Button onClick={openBookInput} />
       </View>
+      <InputMenu />
     </View>
   );
 }
