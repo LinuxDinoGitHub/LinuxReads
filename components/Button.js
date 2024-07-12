@@ -19,3 +19,5 @@ const styles = StyleSheet.create({
         display: "flex"
     }
 })
+
+export default Button;

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import {Button} from "./components/Button"
+import {Button} from "./components/Button.js"
 
 export default function App() {
   return (
