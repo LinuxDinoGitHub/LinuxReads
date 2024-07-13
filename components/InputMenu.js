@@ -1,4 +1,4 @@
-import {React} from "react";
+import {React, useState} from "react";
 import { TouchableOpacity, View, StyleSheet , Text} from "react-native";
 import InputField from "./InputField";
 import BookCreation from "./BookCreation";
@@ -16,7 +16,7 @@ const InputMenu = (props) => {
       };
     return (
     <View style={props.style}>
-        <BookCreationStatus 
+        <BookCreation 
         style={BookCreationStatus ? styles.show: styles.hide}
         event={toggleBookCreation}
         />
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         display: 'flex',
       },
     hide: {
-    display: 'none',
+        display: 'none',
     }
 });
 
