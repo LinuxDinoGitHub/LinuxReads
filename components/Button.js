@@ -5,7 +5,7 @@ const Button = (props) => {
     return (
         <TouchableOpacity style={[styles.shape, props.style]} onPress={props.onClick}>
             <View style={styles.iconContainer}>
-                <Text style={styles.icon}>+</Text>
+                <Text style={styles.icon}>{props.content}</Text>
             </View>
         </TouchableOpacity>
     )
