@@ -5,8 +5,11 @@ import InputField from "./InputField";
 const BookCreation = props => {
     return (
         <View style={[styles.container, props.style]}>
+        <TouchableOpacity style={styles.close} onPress={props.event}>
+            <Text style={styles.x}>+</Text>
+        </TouchableOpacity>
         <Text style={styles.title}>Create New Book Diary</Text>
-            <InputField title="New book name" placeholder="Enter title of your book" multiline={true} height={20}/>
+            <InputField title="New book name" placeholder="Enter title of your book" multiline={true} height={50} style={styles.input}/>
             <TouchableOpacity style={styles.submitButton} onPress={props.event}>
                 <Text style={styles.submitButtonText}>Save</Text>
             </TouchableOpacity>
@@ -17,14 +20,15 @@ const BookCreation = props => {
 const styles = StyleSheet.create({
     container: {
         height: 250,
-        width: '50%',
+        width: 250,
+        backgroundColor: '#E5E4E2',
+        borderRadius: 10,
+        padding: 50,
     },
     submitButton: {
         backgroundColor: '#007bff',
-        paddingVertical: 12,
-        paddingHorizontal: 24,
+        padding: 5,
         borderRadius: 5,
-        marginTop: 20,
         width: '40%'
     },
     submitButtonText: {
@@ -32,6 +36,18 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
+    close: {
+        height: 30,
+        width: 30,
+        transform: [
+            { rotateZ: '45deg' }
+        ],
+        backgroundColor: 'grey',
+        borderRadius: 20,
+    },
+    x: {
+        fontSize: 35,
+    }
 })
 
 export default BookCreation;

@@ -9,7 +9,7 @@ const InputMenu = (props) => {
     Entry comments (text area)
     Submit button
     */
-    const [BookCreationStatus, setBookCreationStatus] = useState(false);
+    const [BookCreationStatus, setBookCreationStatus] = useState(true);
     const toggleBookCreation = () => {
         setBookCreationStatus(!BookCreationStatus);
         console.log(BookCreationStatus);
