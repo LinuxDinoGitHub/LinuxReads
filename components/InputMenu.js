@@ -1,5 +1,5 @@
 import {React} from "react";
-import { TouchableOpacity, View, StyleSheet , Text, TouchableWithoutFeedback, TextInput} from "react-native";
+import { TouchableOpacity, View, StyleSheet , Text} from "react-native";
 import InputField from "./InputField";
 import BookCreation from "./BookCreation";
 const InputMenu = (props) => {
@@ -9,8 +9,17 @@ const InputMenu = (props) => {
     Entry comments (text area)
     Submit button
     */
+    const [BookCreationStatus, setBookCreationStatus] = useState(false);
+    const toggleBookCreation = () => {
+        setBookCreationStatus(!BookCreationStatus);
+        console.log(BookCreationStatus);
+      };
     return (
     <View style={props.style}>
+        <BookCreationStatus 
+        style={BookCreationStatus ? styles.show: styles.hide}
+        event={toggleBookCreation}
+        />
         <InputField title="Book Name" placeholder="Note that you have to add your book in the previous page first to choose here" multiline={true} height={40}/>
         <InputField title="Current page" placeholder=" " multiline={false} height={20}/>
         <InputField title="Time spent reading" placeholder="Time in minutes" multiline={false} height={20}/>
@@ -35,6 +44,12 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
+    show: {
+        display: 'flex',
+      },
+    hide: {
+    display: 'none',
+    }
 });
 
 export default InputMenu;

@@ -1,32 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
 import {React, useState} from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Button from "./components/Button";
 import InputMenu from "./components/InputMenu";
-import BookCreation from './components/BookCreation';
 
 
 
 export default function App() {
   const [books, setBooks] = useState([]);
   const [visible, setvisible] = useState(false);
-  const [BookCreationStatus, setBookCreationStatus] = useState(false)
   const openBookInput = () => {
     setvisible(!visible);
     console.log(visible);
   };
-  const toggleBookCreation = () => {
-    setBookCreationStatus(!BookCreationStatus);
-    console.log(BookCreationStatus);
-  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Linux Reads</Text>
-      <BookCreationStatus 
-      style={BookCreationStatus ? styles.show: styles.hide}
-      event={toggleBookCreation}
-      
-      />
       <InputMenu 
       event={openBookInput} 
       style={visible ? styles.show: styles.hide}
@@ -59,5 +47,5 @@ const styles = StyleSheet.create({
   },
   hide: {
     display: 'none',
-  }
+  },
 });
