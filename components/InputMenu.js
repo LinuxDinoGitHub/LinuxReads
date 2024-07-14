@@ -15,12 +15,12 @@ const InputMenu = (props) => {
         console.log(BookCreationStatus);
       };
     return (
-    <View style={props.style}>
+    <View style={props.stylep}>
         <BookCreation 
         style={BookCreationStatus ? styles.show: styles.hide}
         event={toggleBookCreation}
         />
-        <InputField title="Book Name" placeholder="Note that you have to add your book in the previous page first to choose here" multiline={true} height={40}/>
+        <InputField title="Book Title" placeholder=" " multiline={true} height={20}/>
         <InputField title="Current page" placeholder=" " multiline={false} height={20}/>
         <InputField title="Time spent reading" placeholder="Time in minutes" multiline={false} height={20}/>
         <InputField title="Entry comments" placeholder="Enter your thoughts about the book here!" multiline={true} height={100}/>

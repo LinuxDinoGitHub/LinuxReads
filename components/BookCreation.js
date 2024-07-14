@@ -37,13 +37,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     close: {
+        display: 'flex',
+        alignItems: 'flex-end',
         height: 30,
         width: 30,
         transform: [
             { rotateZ: '45deg' }
         ],
-        backgroundColor: 'grey',
-        borderRadius: 20,
     },
     x: {
         fontSize: 35,
