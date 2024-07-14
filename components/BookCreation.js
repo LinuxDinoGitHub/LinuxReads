@@ -4,12 +4,14 @@ import InputField from "./InputField";
 
 const BookCreation = props => {
     return (
-        <View style={[styles.container, props.style]}>
+        <View style={[styles.container, props.stylep]}>
         <TouchableOpacity style={styles.close} onPress={props.event}>
             <Text style={styles.x}>+</Text>
         </TouchableOpacity>
         <Text style={styles.title}>Create New Book Diary</Text>
             <InputField title="New book name" placeholder="Enter title of your book" multiline={true} height={50} style={styles.input}/>
+            <InputField title="Author" placeholder="Enter author of book" multiline={true} height={50} style={styles.input}/>
+            <InputField title="Pages" placeholder="Enter max page of your book" multiline={true} height={50} style={styles.input}/>
             <TouchableOpacity style={styles.submitButton} onPress={props.event}>
                 <Text style={styles.submitButtonText}>Save</Text>
             </TouchableOpacity>
@@ -19,8 +21,8 @@ const BookCreation = props => {
 
 const styles = StyleSheet.create({
     container: {
+        position: 'absolute',
         height: 250,
-        width: 250,
         backgroundColor: '#E5E4E2',
         borderRadius: 10,
         padding: 50,
@@ -37,16 +39,18 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     close: {
-        display: 'flex',
-        alignItems: 'flex-end',
-        height: 30,
-        width: 30,
-        transform: [
-            { rotateZ: '45deg' }
-        ],
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        height: 35,
+        width: 35,
+        maxWidth: 'fit-content',
     },
     x: {
         fontSize: 35,
+        transform: [
+            { rotateZ: '45deg' }
+        ],
     }
 })
 

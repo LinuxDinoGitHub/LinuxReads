@@ -15,22 +15,37 @@ const InputMenu = (props) => {
         console.log(BookCreationStatus);
       };
     return (
-    <View style={props.stylep}>
-        <BookCreation 
-        style={BookCreationStatus ? styles.show: styles.hide}
-        event={toggleBookCreation}
-        />
-        <InputField title="Book Title" placeholder=" " multiline={true} height={20}/>
-        <InputField title="Current page" placeholder=" " multiline={false} height={20}/>
-        <InputField title="Time spent reading" placeholder="Time in minutes" multiline={false} height={20}/>
-        <InputField title="Entry comments" placeholder="Enter your thoughts about the book here!" multiline={true} height={100}/>
-        <TouchableOpacity style={styles.submitButton} onPress={props.event}>
-            <Text style={styles.submitButtonText}>Submit</Text>
-        </TouchableOpacity>
+    <View>
+        <View style={[styles.container, props.stylep]}>
+            <BookCreation 
+            stylep={BookCreationStatus ? styles.show: styles.hide}
+            event={toggleBookCreation}
+            style={styles.bookCre}
+            />
+            <InputField title="Book Title" placeholder=" " multiline={true} height={20}/>
+            <TouchableOpacity onPress={toggleBookCreation}>
+                <Text><View style={styles.edit}></View>New book</Text>
+            </TouchableOpacity>
+            <InputField title="Current page" placeholder=" " multiline={false} height={20}/>
+            <InputField title="Time spent reading" placeholder="Time in minutes" multiline={false} height={20}/>
+            <InputField title="Entry comments" placeholder="Enter your thoughts about the book here!" multiline={true} height={100}/>
+            <TouchableOpacity style={styles.submitButton} onPress={props.event}>
+                <Text style={styles.submitButtonText}>Submit</Text>
+            </TouchableOpacity>
+        </View>
     </View>
     )
 };
 const styles = StyleSheet.create({
+    bookCre:{
+        position: 'absolute',
+        top: 0,
+        zIndex: 999,
+    },
+    container:{
+        backgroundColor: '#e0dbce',
+        padding: 20,
+    },
     submitButton: {
         backgroundColor: '#007bff',
         paddingVertical: 12,
