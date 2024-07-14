@@ -22,7 +22,7 @@ const BookCreation = props => {
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
-        height: 250,
+        minHeight: 250,
         backgroundColor: '#E5E4E2',
         borderRadius: 10,
         padding: 50,

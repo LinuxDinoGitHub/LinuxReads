@@ -1,15 +1,20 @@
 import {React, useState} from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Button from "./components/Button";
 import InputMenu from "./components/InputMenu";
 import Book from './components/Book';
-import { withDecay } from 'react-native-reanimated';
+import BookCreation from './components/BookCreation';
 
 
 
 export default function App() {
   const [books, setBooks] = useState([]);
   const [visible, setvisible] = useState(false);
+  const [BookCreationStatus, setBookCreationStatus] = useState(false);
+  const toggleBookCreation = () => {
+      setBookCreationStatus(!BookCreationStatus);
+      console.log(BookCreationStatus);
+  };
   const openBookInput = () => {
     setvisible(!visible);
     console.log(visible);
@@ -22,7 +27,13 @@ export default function App() {
       <View style={styles.books}>
         <Book maxPage={100} currPage={15}/>
       </View>
+      <BookCreation 
+            stylep={BookCreationStatus ? styles.show: styles.hide}
+            event={toggleBookCreation}
+            style={styles.bookCre}
+      />
       <InputMenu 
+      bookcreation={toggleBookCreation}
       event={openBookInput} 
       stylep={visible ? styles.show: styles.hide}
       style={styles.inputMenu}
@@ -68,5 +79,11 @@ const styles = StyleSheet.create({
   },
   inputMenu:{
     position: 'absolute',
+  },
+  bookCre:{
+    zIndex: 999,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });
