@@ -1,5 +1,5 @@
 import {React, useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import Button from "./components/Button";
 import InputMenu from "./components/InputMenu";
 import Book from './components/Book';
@@ -8,7 +8,7 @@ import BookCreation from './components/BookCreation';
 
 
 export default function App() {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState([{title: "Harry Potter",max:100,curr:15},{title: "Harry Potter",max:100,curr:15}]);
   const [visible, setvisible] = useState(false);
   const [BookCreationStatus, setBookCreationStatus] = useState(false);
   const toggleBookCreation = () => {
@@ -25,13 +25,17 @@ export default function App() {
         <Text style={styles.title}>Linux Reads</Text>
       </View>
       <View style={styles.books}>
-        <Book maxPage={100} currPage={15}/>
+        {books.map((obj) => {
+          return (
+            <Book title={obj.title} maxPage={obj.max} currPage={obj.curr}/>
+          );
+        })}
       </View>
-      <BookCreation 
-            stylep={BookCreationStatus ? styles.show: styles.hide}
-            event={toggleBookCreation}
-            style={styles.bookCre}
-      />
+        <BookCreation 
+              stylep={BookCreationStatus ? styles.show: styles.hide}
+              event={toggleBookCreation}
+              style={styles.bookCre}
+        />
       <InputMenu 
       bookcreation={toggleBookCreation}
       event={openBookInput} 
@@ -84,6 +88,5 @@ const styles = StyleSheet.create({
     zIndex: 999,
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
   }
 });

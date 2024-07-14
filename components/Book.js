@@ -8,7 +8,7 @@ const Book = props => {
     return (
         <TouchableOpacity style={styles.container}>
             <View style={styles.BackgroundImage}>
-                <Text style={styles.header}>{props.title}Harry Potter and the Philosopher's Stone</Text>
+                <Text style={styles.header}>{props.title}</Text>
                 <Text style={styles.percentageRead}>Percentage read: {percentageRead}%</Text>
                 <Text style={styles.percentageRead2}>{currPage}/{maxPage}</Text>
             </View>
