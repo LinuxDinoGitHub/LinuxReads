@@ -8,11 +8,9 @@ import BookCreation from './components/BookCreation';
 
 
 export default function App() {
-  const [books, setBooks] = useState([
-    {title: "Harry Potter", max: 369, curr: 10, thoughts: "Blah", time: 120},
-    {title: "The Hobbit", max: 304, curr: 25, thoughts: "Interesting", time: 90},
-    {title: "To Kill a Mockingbird", max: 281, curr: 50, thoughts: "Inspiring", time: 180}
-  ]);
+  const [books, setBooks] = useState(
+    {"Harry Potter": {entry: 1, max: 369, curr: 10, thoughts: "Blah", time: 120}},
+  );
   const [visible, setvisible] = useState(false);
   const [BookCreationStatus, setBookCreationStatus] = useState(false);
   const toggleBookCreation = () => {
@@ -24,6 +22,7 @@ export default function App() {
     console.log(visible);
   };
   const retrieveData = data => {
+    let temp = books;
     setBooks(data);
     console.log(data);
   };
@@ -36,11 +35,18 @@ export default function App() {
         <Text style={styles.title}>Linux Reads</Text>
       </View>
       <View style={styles.books}>
-        {books.map((obj, index) => {
-          return (
-            <Book key={index} title={obj.title} maxPage={obj.max} currPage={obj.curr}/>
-          );
-        })}
+      {books.length > 0 ? (
+        books.map(([book, values], index) => (
+          <Book
+            key={index}
+            title={book}
+            maxPage={values.max}
+            currPage={values.curr}
+          />
+        ))
+      ) : (
+        <Text>No books to display.</Text>
+      )}
       </View>
       <BookCreation 
             stylep={BookCreationStatus ? styles.show: styles.hide}

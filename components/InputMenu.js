@@ -9,16 +9,15 @@ const InputMenu = (props) => {
     Submit button
     */
     const [errorMessageStatus, seterrorMessageStatus] = useState(false);
-    const [existingBooks, setExistingBooks] = useState([]);
+    const [existingBooks, setExistingBooks] = useState([props.data]);
     const [bookTitle, setBookTitle] = useState('None');
     const [maxPage, setMaxPage] = useState(0);
     const [currPage, setcurrPage] = useState(0);
     const [review, setreview] = useState('');
-    useEffect(() => {
-        setExistingBooks(props.data);
-      }, [props.data]);
+    const [time, settime] = useState(0);
+
     
-    const existingBookTitle = existingBooks.map(book=>book.title);  
+    const existingBookTitle = existingBooks.keys();  
     const inputFailure = msg => {
         seterrorMessageStatus(true);
         console.log(msg)
@@ -26,9 +25,9 @@ const InputMenu = (props) => {
     const sendData = () => {
         for(const x in existingBookTitle){
             if (x == bookTitle){
-                let book = existingBooks.filter(book => book.title == bookTitle);
-                setMaxPage(book.max)
-                break
+                let book = existingBooks[bookTitle];
+                setMaxPage(book.max);
+                break;
             }
             if(x == existingBookTitle[existingBookTitle.length-1]){
                 inputFailure('No current books exists')
@@ -42,7 +41,7 @@ const InputMenu = (props) => {
             inputFailure('No current page entered')
         }
         else{
-            props.event2({title: {bookTitle}, max: {maxPage}, curr: {currPage}, thoughts: {review}})
+            props.event2({bookTitle: {max: maxPage, curr: currPage, thoughts: review, time: time}})
             props.event()
         }
     };
@@ -70,7 +69,7 @@ const InputMenu = (props) => {
             inputMode = "numeric"
             onChangeText={setcurrPage}
             />
-            <InputField title="Time spent reading" placeholder="Time in minutes" multiline={false} height={20}/>
+            <InputField title="Time spent reading" placeholder="Time in minutes" multiline={false} height={20} onChangeText={settime}/>
             <InputField 
             title="Entry comments"
             placeholder="Enter your thoughts about the book here!" 
