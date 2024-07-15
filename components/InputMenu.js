@@ -1,6 +1,7 @@
 import {React, useState, useEffect} from "react";
 import { TouchableOpacity, View, StyleSheet , Text} from "react-native";
 import InputField from "./InputField";
+
 const InputMenu = (props) => {
     /* Book name (Selection) if new book -> BookCreation.js
     Current page (int input)
@@ -8,7 +9,7 @@ const InputMenu = (props) => {
     Entry comments (text area)
     Submit button
     */
-    const [errorMessageStatus, seterrorMessageStatus] = useState(false);
+    const [errorMessage, seterrorMessage] = useState('');
     const [existingBooks, setExistingBooks] = useState([props.data]);
     const [bookTitle, setBookTitle] = useState('None');
     const [maxPage, setMaxPage] = useState(0);
@@ -19,7 +20,7 @@ const InputMenu = (props) => {
     
     const existingBookTitle = existingBooks.keys();  
     const inputFailure = msg => {
-        seterrorMessageStatus(true);
+        seterrorMessage(msg);
         console.log(msg)
     }
     const sendData = () => {
@@ -29,7 +30,7 @@ const InputMenu = (props) => {
                 setMaxPage(book.max);
                 break;
             }
-            if(x == existingBookTitle[existingBookTitle.length-1]){
+            if(x == existingBooks[-1]){
                 inputFailure('No current books exists')
             }
         };
@@ -37,7 +38,6 @@ const InputMenu = (props) => {
             inputFailure('No book title entered')
         }
         else if(currPage === 0){
-            console.log(currPage)
             inputFailure('No current page entered')
         }
         else{
@@ -77,6 +77,7 @@ const InputMenu = (props) => {
             height={100}
             onChangeText={setreview}
             />
+            <Text style={styles.error}>{errorMessage}</Text>
             <TouchableOpacity style={styles.submitButton} onPress={sendData}>
                 <Text style={styles.submitButtonText}>Submit</Text>
             </TouchableOpacity>
@@ -121,6 +122,9 @@ const styles = StyleSheet.create({
         transform: [
             { rotateZ: '45deg' }
         ],
+    },
+    error:{
+        color: 'red',
     }
 });
 

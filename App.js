@@ -35,18 +35,20 @@ export default function App() {
         <Text style={styles.title}>Linux Reads</Text>
       </View>
       <View style={styles.books}>
-      {books.length > 0 ? (
-        books.map(([book, values], index) => (
+       <View style={styles.books}>
+      {Object.entries(books).length > 0 ? (
+        Object.entries(books).map(([title, book], index) => (
           <Book
-            key={index}
-            title={book}
-            maxPage={values.max}
-            currPage={values.curr}
+            key={title}
+            title={title}
+            maxPage={book.max}
+            currPage={book.curr}
           />
         ))
       ) : (
         <Text>No books to display.</Text>
       )}
+    </View>
       </View>
       <BookCreation 
             stylep={BookCreationStatus ? styles.show: styles.hide}
