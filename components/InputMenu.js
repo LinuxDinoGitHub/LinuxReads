@@ -10,38 +10,50 @@ const InputMenu = (props) => {
     Submit button
     */
     const [errorMessage, seterrorMessage] = useState('');
-    const [existingBooks, setExistingBooks] = useState([props.data]);
-    const [bookTitle, setBookTitle] = useState('None');
+    const [existingBooks, setExistingBooks] = useState({});
+    const [bookTitle, setBookTitle] = useState('None')
     const [maxPage, setMaxPage] = useState(0);
     const [currPage, setcurrPage] = useState(0);
     const [review, setreview] = useState('');
     const [time, settime] = useState(0);
-
-    
-    const existingBookTitle = existingBooks.keys();  
+    useEffect(() => {
+        if (props.data) {
+          setExistingBooks(props.data());
+        }
+      }, [props.data]);
+    const existingBookTitle = Object.keys(existingBooks);  
+    console.log(existingBookTitle)
     const inputFailure = msg => {
         seterrorMessage(msg);
         console.log(msg)
     }
+    const [bookInList, setbookInList] = useState(false);
     const sendData = () => {
-        for(const x in existingBookTitle){
+        for(let x in existingBookTitle){
+            setbookInList(false);
             if (x == bookTitle){
                 let book = existingBooks[bookTitle];
                 setMaxPage(book.max);
-                break;
-            }
-            if(x == existingBooks[-1]){
-                inputFailure('No current books exists')
+                setbookInList(true);
+                console.log('book in list')
             }
         };
         if (bookTitle === 'None'){
             inputFailure('No book title entered')
         }
+        else if(!bookInList){
+            inputFailure(`"${bookTitle}" does not exist yet, please add through the \'+ Add new book\' button above`)
+        }
         else if(currPage === 0){
             inputFailure('No current page entered')
         }
         else{
-            props.event2({bookTitle: {max: maxPage, curr: currPage, thoughts: review, time: time}})
+            if (bookInList){
+                props.event2({bookTitle: {"max": maxPage, "curr": currPage, "thoughts": review, "time": time}})
+            }
+            else{
+                props.event2({bookTitle: {"max": maxPage, "curr": currPage, "thoughts": review, "time": time}})
+            }
             props.event()
         }
     };
@@ -89,6 +101,8 @@ const styles = StyleSheet.create({
     container:{
         backgroundColor: '#e0dbce',
         padding: 20,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
     },
     submitButton: {
         backgroundColor: '#007bff',
@@ -125,6 +139,7 @@ const styles = StyleSheet.create({
     },
     error:{
         color: 'red',
+        width: '70%',
     }
 });
 
