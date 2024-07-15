@@ -15,7 +15,7 @@ const InputMenu = (props) => {
     const [maxPage, setMaxPage] = useState(0);
     const [currPage, setcurrPage] = useState(0);
     const [review, setreview] = useState('');
-    const [time, settime] = useState(0);
+    const [mtime, settime] = useState(0);
     useEffect(() => {
         if (props.data) {
           setExistingBooks(props.data);
@@ -50,7 +50,7 @@ const InputMenu = (props) => {
             let x = {[bookTitle]: 
                 [
                     ...existingBooks[bookTitle],
-                    {"max": maxPage, "curr": currPage, "thoughts": review, "time": time, "index": nextIndex}
+                    {max: maxPage, curr: currPage, thoughts: review, time: mtime, index: nextIndex}
                 ]};
             seterrorMessage(false);
             props.event2(x);

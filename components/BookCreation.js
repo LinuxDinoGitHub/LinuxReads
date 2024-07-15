@@ -23,8 +23,7 @@ const BookCreation = props => {
             seterrorMessage('Book already exists');
         }
         else{
-            console.log({[newBook]: {"max": maxPage, "curr": 0, "thoughts": "Book created", "time": 0, "index": 0}})
-            props.retrieve({[newBook]: {"max": maxPage, "curr": 0, "thoughts": "Book created", "time": 0, "index": 0}})
+            props.retrieve({[newBook]: [{max: maxPage, curr: 0, thoughts: "Book created", time: 0, index: 0, author: author}]})
             props.event(); //Hides
         }
     }

@@ -9,7 +9,7 @@ import BookCreation from './components/BookCreation';
 
 export default function App() {
   const [books, setBooks] = useState(
-    {"Example": [{entry: 1, max: 369, curr: 10, thoughts: "Blah", time: 120, index: 0}]},
+    {"Example": [{ max: 369, curr: 10, thoughts: "Blah", time: 120, index: 0, author: 'LinuxDino'}]},
   );
   const [visible, setvisible] = useState(false);
   const [BookCreationStatus, setBookCreationStatus] = useState(false);
@@ -22,13 +22,11 @@ export default function App() {
     console.log(visible);
   };
   const retrieveData = data => {
-    let temp = books;
     setBooks({...books, ...data});
     console.log(data);
   };
-  const retrieveNewBook = book => {
-    let x = books;
-    setBooks({book, ...x});
+  const retrieveNewBook = newBook => {
+    setBooks({...newBook, ...books});
   }
   const sendData = () => {
     return books;
