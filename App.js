@@ -8,7 +8,7 @@ import BookCreation from './components/BookCreation';
 
 
 export default function App() {
-  const [books, setBooks] = useState([{title: "Harry Potter",max:369,curr:0,thoughts:"Blah"}]);
+  const [books, setBooks] = useState([{title: "Harry Potter",max:369,curr:0,thoughts:"Blah",time:120}]);
   const [visible, setvisible] = useState(false);
   const [BookCreationStatus, setBookCreationStatus] = useState(false);
   const toggleBookCreation = () => {

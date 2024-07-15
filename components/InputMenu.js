@@ -31,14 +31,14 @@ const InputMenu = (props) => {
                 setMaxPage(book.max)
                 break
             }
-            else if(x == existingBookTitle[existingBooks.length-1]){
-                inputFailure('No current books exist')
+            else if(x == existingBookTitle[existingBookTitle.length-1]){
+                inputFailure('No current books exists')
             }
         };
         if (bookTitle === 'None'){
             inputFailure('No book title entered')
         }
-        else if (currPage == 0){
+        else if(currPage == 0){
             inputFailure('No current page entered')
         }
         else{
