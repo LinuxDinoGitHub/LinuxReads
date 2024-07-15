@@ -18,26 +18,24 @@ const InputMenu = (props) => {
     const [time, settime] = useState(0);
     useEffect(() => {
         if (props.data) {
-          setExistingBooks(props.data());
+          setExistingBooks(props.data);
         }
       }, [props.data]);
-    const existingBookTitle = Object.keys(existingBooks);  
-    console.log(existingBookTitle)
+
     const inputFailure = msg => {
         seterrorMessage(msg);
-        console.log(msg)
+        console.log(msg);
     }
     const [bookInList, setbookInList] = useState(false);
+    const existingBookTitle = Object.keys(existingBooks);  
+    console.log(existingBookTitle)
     const sendData = () => {
-        for(let x in existingBookTitle){
-            setbookInList(false);
-            if (x == bookTitle){
-                let book = existingBooks[bookTitle];
-                setMaxPage(book.max);
-                setbookInList(true);
-                console.log('book in list')
-            }
-        };
+        if (existingBookTitle.includes(bookTitle)){
+            let book = existingBooks[bookTitle];
+            setMaxPage(book.max);
+            setbookInList(true);
+            console.log('book in list')
+        }
         if (bookTitle === 'None'){
             inputFailure('No book title entered')
         }
@@ -48,12 +46,7 @@ const InputMenu = (props) => {
             inputFailure('No current page entered')
         }
         else{
-            if (bookInList){
-                props.event2({bookTitle: {"max": maxPage, "curr": currPage, "thoughts": review, "time": time}})
-            }
-            else{
-                props.event2({bookTitle: {"max": maxPage, "curr": currPage, "thoughts": review, "time": time}})
-            }
+            props.event2({bookTitle: {"max": maxPage, "curr": currPage, "thoughts": review, "time": time}})
             props.event()
         }
     };
