@@ -9,7 +9,7 @@ import BookCreation from './components/BookCreation';
 
 export default function App() {
   const [books, setBooks] = useState(
-    {"Harry Potter": {entry: 1, max: 369, curr: 10, thoughts: "Blah", time: 120}},
+    {"Example": [{entry: 1, max: 369, curr: 10, thoughts: "Blah", time: 120, index: 0}]},
   );
   const [visible, setvisible] = useState(false);
   const [BookCreationStatus, setBookCreationStatus] = useState(false);
@@ -41,8 +41,8 @@ export default function App() {
           <Book
             key={title}
             title={title}
-            maxPage={book.max}
-            currPage={book.curr}
+            maxPage={book[0].max}
+            currPage={book[book.length-1].curr}
           />
         ))
       ) : (
@@ -54,6 +54,7 @@ export default function App() {
             stylep={BookCreationStatus ? styles.show: styles.hide}
             event={toggleBookCreation}
             style={styles.bookCre}
+            data = {sendData}
       />
       <InputMenu 
       bookcreation={toggleBookCreation}

@@ -31,7 +31,7 @@ const InputMenu = (props) => {
     console.log(existingBookTitle)
     const sendData = () => {
         if (existingBookTitle.includes(bookTitle)){
-            let book = existingBooks[bookTitle];
+            let book = existingBooks[bookTitle][0];
             setMaxPage(book.max);
             setbookInList(true);
             console.log('book in list')
@@ -46,7 +46,12 @@ const InputMenu = (props) => {
             inputFailure('No current page entered')
         }
         else{
-            let x = {[bookTitle]: {"max": existingBooks[bookTitle].max, "curr": currPage, "thoughts": review, "time": time}};
+            let nextIndex = parseInt(existingBooks[bookTitle][existingBooks[bookTitle].length-1].index)+1;
+            let x = {[bookTitle]: 
+                [
+                    ...existingBooks[bookTitle],
+                    {"max": maxPage, "curr": currPage, "thoughts": review, "time": time, "index": nextIndex}
+                ]};
             seterrorMessage(false);
             props.event2(x);
             props.event();
