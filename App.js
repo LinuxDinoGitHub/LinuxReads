@@ -26,6 +26,10 @@ export default function App() {
     setBooks({...books, ...data});
     console.log(data);
   };
+  const retrieveNewBook = book => {
+    let x = books;
+    setBooks({book, ...x});
+  }
   const sendData = () => {
     return books;
   }
@@ -55,6 +59,7 @@ export default function App() {
             event={toggleBookCreation}
             style={styles.bookCre}
             data = {sendData}
+            retrieve = {retrieveNewBook}
       />
       <InputMenu 
       bookcreation={toggleBookCreation}

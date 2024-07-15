@@ -3,18 +3,30 @@ import { TouchableOpacity, View, StyleSheet , Text} from "react-native";
 import InputField from "./InputField";
 //MUST ADD ONCHANGETEXT PROP
 const BookCreation = props => {
-    const [bookTitle, setBookTitle] = useState([]);
+    const [bookTitle, setBookTitle] = useState();
     const [newBook, setnewBook] = useState('');
     const [author, setauthor] = useState('');
     const [maxPage, setMaxPage] = useState(0);
+    const [errorMessage, seterrorMessage] = useState('');
     useEffect(() => {
+        const data = props.data()
         if (props.data) {
-          setBookTitle(props.data);
-          setBookTitle(prev => {Object.keys(prev)})
+          setBookTitle(Object.keys(data));
         }
       }, [props.data]);
+    console.log(bookTitle)
     const sendData = () => {
-        props.event() //Hides
+        if(newBook == '' || author == '' || maxPage == 0){
+            seterrorMessage('Please enter the required fields');
+        }
+        else if(bookTitle.includes(newBook)){ //"Security checks"
+            seterrorMessage('Book already exists');
+        }
+        else{
+            console.log({[newBook]: {"max": maxPage, "curr": 0, "thoughts": "Book created", "time": 0, "index": 0}})
+            props.retrieve({[newBook]: {"max": maxPage, "curr": 0, "thoughts": "Book created", "time": 0, "index": 0}})
+            props.event(); //Hides
+        }
     }
     return (
         <View style={[styles.container, props.stylep]}>
@@ -43,8 +55,10 @@ const BookCreation = props => {
             multiline={true} 
             height={50} 
             style={styles.input}
+            inputMode='numeric'
             onChangeText={setMaxPage}
             />
+            <Text style={styles.error}>{errorMessage}</Text>
             <TouchableOpacity style={styles.submitButton} onPress={sendData}>
                 <Text style={styles.submitButtonText}>Save</Text>
             </TouchableOpacity>
@@ -85,6 +99,10 @@ const styles = StyleSheet.create({
         transform: [
             { rotateZ: '45deg' }
         ],
+    },
+    error:{
+        color: 'red',
+        width: '70%',
     }
 })
 
