@@ -1,4 +1,4 @@
-import {React, useState, useRef} from "react";
+import {React, useState, useRef, useEffect} from "react";
 import { TouchableOpacity, View, StyleSheet , Text} from "react-native";
 import InputField from "./InputField";
 const InputMenu = (props) => {
@@ -8,13 +8,43 @@ const InputMenu = (props) => {
     Entry comments (text area)
     Submit button
     */
-    const existingBooks = useRef(props.data)
-    const [bookTitle, setBookTitle] = useState('');
+    const [errorMessageStatus, seterrorMessageStatus] = useState(false);
+    const [existingBooks, setExistingBooks] = useState([]);
+    const [bookTitle, setBookTitle] = useState('Nones');
     const [maxPage, setMaxPage] = useState(0);
     const [currPage, setcurrPage] = useState(0);
     const [review, setreview] = useState('');
+    useEffect(() => {
+        setExistingBooks(props.data);
+      }, [props.data]);
+    
+    const existingBookTitle = existingBooks.map(book=>book.title);  
+    console.log(existingBookTitle)
+    const inputFailure = msg => {
+        seterrorMessageStatus(true);
+        console.log(msg)
+    }
     const sendData = () => {
+        for(const x in existingBookTitle){
+            if (x == bookTitle){
+                let book = existingBooks.filter(book => book.title == bookTitle);
+                setMaxPage(book.max)
+                break
+            }
+            else if(x == existingBookTitle[existingBooks.length-1]){
+                inputFailure('No current books exist')
+            }
+        };
+        if (bookTitle === 'None'){
+            inputFailure('No book title entered')
+        }
+        else if (currPage == 0){
+            inputFailure('No current page entered')
+        }
+        else{
             props.event2({title: {bookTitle}, max: {maxPage}, curr: {currPage}, thoughts: {review}})
+            props.event()
+        }
     };
     return (
     <View>
