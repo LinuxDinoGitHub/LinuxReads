@@ -1,4 +1,4 @@
-import {React, useState} from "react";
+import {React, useState, useRef} from "react";
 import { TouchableOpacity, View, StyleSheet , Text} from "react-native";
 import InputField from "./InputField";
 const InputMenu = (props) => {
@@ -8,18 +8,47 @@ const InputMenu = (props) => {
     Entry comments (text area)
     Submit button
     */
-
+    const existingBooks = useRef(props.data)
+    const [bookTitle, setBookTitle] = useState('');
+    const [maxPage, setMaxPage] = useState(0);
+    const [currPage, setcurrPage] = useState(0);
+    const [review, setreview] = useState('');
+    const sendData = () => {
+            props.event2({title: {bookTitle}, max: {maxPage}, curr: {currPage}, thoughts: {review}})
+    };
     return (
     <View>
         <View style={[styles.container, props.stylep]}>
-            <InputField title="Book Title" placeholder=" " multiline={true} height={20}/>
-            <TouchableOpacity onPress={props.bookcreation}>
-                <Text><View style={styles.edit}></View>New book</Text>
+            <TouchableOpacity style={styles.close} onPress={props.event}>
+                <Text style={styles.x}>+</Text>
             </TouchableOpacity>
-            <InputField title="Current page" placeholder=" " multiline={false} height={20}/>
+            <InputField 
+            title="Book Title" 
+            placeholder=" " 
+            multiline={true} 
+            height={20} 
+            onChangeText={newText => setBookTitle(newText)}
+            />
+            <TouchableOpacity onPress={props.bookcreation}>
+                <Text><View style={styles.edit}></View>+ Add New book</Text>
+            </TouchableOpacity>
+            <InputField 
+            title="Current page" 
+            placeholder=" " 
+            multiline={false} 
+            height={20}
+            inputMode = "numeric"
+            onChangeText={newText => setcurrPage(newText)}
+            />
             <InputField title="Time spent reading" placeholder="Time in minutes" multiline={false} height={20}/>
-            <InputField title="Entry comments" placeholder="Enter your thoughts about the book here!" multiline={true} height={100}/>
-            <TouchableOpacity style={styles.submitButton} onPress={props.event}>
+            <InputField 
+            title="Entry comments"
+            placeholder="Enter your thoughts about the book here!" 
+            multiline={true} 
+            height={100}
+            onChangeText={newText => setreview(newText)}
+            />
+            <TouchableOpacity style={styles.submitButton} onPress={sendData}>
                 <Text style={styles.submitButtonText}>Submit</Text>
             </TouchableOpacity>
         </View>
@@ -49,6 +78,20 @@ const styles = StyleSheet.create({
       },
     hide: {
         display: 'none',
+    },
+    close: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        height: 35,
+        width: 35,
+        maxWidth: 'fit-content',
+    },
+    x: {
+        fontSize: 35,
+        transform: [
+            { rotateZ: '45deg' }
+        ],
     }
 });
 

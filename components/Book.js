@@ -4,7 +4,7 @@ import { View, StyleSheet ,Text, TouchableOpacity } from "react-native";
 const Book = props => {
     const maxPage = props.maxPage
     const currPage = props.currPage
-    const percentageRead = (currPage/maxPage)*100
+    const percentageRead = Math.round((currPage/maxPage)*1000)/10
     return (
         <TouchableOpacity style={styles.container}>
             <View style={styles.BackgroundImage}>

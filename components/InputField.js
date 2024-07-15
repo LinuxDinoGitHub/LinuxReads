@@ -7,7 +7,7 @@ const InputField = (props) => {
     <View>
         <Text style={styles.title}>{props.title}</Text>
         <View style={[styles.inputField, {height: props.height}]}>
-            <TextInput placeholder={props.placeholder} multiline={props.multiline}></TextInput>
+            <TextInput placeholder={props.placeholder} multiline={props.multiline} inputMode={props.inputMode}></TextInput>
         </View>
     </View>
     )

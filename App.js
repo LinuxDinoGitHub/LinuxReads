@@ -8,7 +8,7 @@ import BookCreation from './components/BookCreation';
 
 
 export default function App() {
-  const [books, setBooks] = useState([{title: "Harry Potter",max:100,curr:15},{title: "Harry Potter",max:100,curr:15}]);
+  const [books, setBooks] = useState([{title: "Harry Potter",max:369,curr:0,thoughts:"Blah"}]);
   const [visible, setvisible] = useState(false);
   const [BookCreationStatus, setBookCreationStatus] = useState(false);
   const toggleBookCreation = () => {
@@ -19,28 +19,37 @@ export default function App() {
     setvisible(!visible);
     console.log(visible);
   };
+  const retrieveData = data => {
+    setBooks(data);
+    console.log(data);
+  };
+  const sendData = () => {
+    return books;
+  }
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
         <Text style={styles.title}>Linux Reads</Text>
       </View>
       <View style={styles.books}>
-        {books.map((obj) => {
+        {books.map((obj, index) => {
           return (
-            <Book title={obj.title} maxPage={obj.max} currPage={obj.curr}/>
+            <Book key={index} title={obj.title} maxPage={obj.max} currPage={obj.curr}/>
           );
         })}
       </View>
-        <BookCreation 
-              stylep={BookCreationStatus ? styles.show: styles.hide}
-              event={toggleBookCreation}
-              style={styles.bookCre}
-        />
+      <BookCreation 
+            stylep={BookCreationStatus ? styles.show: styles.hide}
+            event={toggleBookCreation}
+            style={styles.bookCre}
+      />
       <InputMenu 
       bookcreation={toggleBookCreation}
       event={openBookInput} 
+      event2={retrieveData}
       stylep={visible ? styles.show: styles.hide}
       style={styles.inputMenu}
+      data = {sendData}
       />
       <View style={styles.buttonContainer}>
         <Button onClick={openBookInput} content="+"/>
@@ -86,7 +95,7 @@ const styles = StyleSheet.create({
   },
   bookCre:{
     zIndex: 999,
-    flex: 1,
-    alignItems: 'center',
+    position: 'absolute',
+    top: 100,
   }
 });
