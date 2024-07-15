@@ -1,7 +1,7 @@
 import {React} from "react";
 import { TouchableOpacity, View, StyleSheet , Text} from "react-native";
 import InputField from "./InputField";
-
+//MUST ADD ONCHANGETEXT PROP
 const BookCreation = props => {
     return (
         <View style={[styles.container, props.stylep]}>

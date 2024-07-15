@@ -1,4 +1,4 @@
-import {React, useState, useRef, useEffect} from "react";
+import {React, useState, useEffect} from "react";
 import { TouchableOpacity, View, StyleSheet , Text} from "react-native";
 import InputField from "./InputField";
 const InputMenu = (props) => {
@@ -10,7 +10,7 @@ const InputMenu = (props) => {
     */
     const [errorMessageStatus, seterrorMessageStatus] = useState(false);
     const [existingBooks, setExistingBooks] = useState([]);
-    const [bookTitle, setBookTitle] = useState('Nones');
+    const [bookTitle, setBookTitle] = useState('None');
     const [maxPage, setMaxPage] = useState(0);
     const [currPage, setcurrPage] = useState(0);
     const [review, setreview] = useState('');
@@ -19,7 +19,6 @@ const InputMenu = (props) => {
       }, [props.data]);
     
     const existingBookTitle = existingBooks.map(book=>book.title);  
-    console.log(existingBookTitle)
     const inputFailure = msg => {
         seterrorMessageStatus(true);
         console.log(msg)
@@ -31,14 +30,15 @@ const InputMenu = (props) => {
                 setMaxPage(book.max)
                 break
             }
-            else if(x == existingBookTitle[existingBookTitle.length-1]){
+            if(x == existingBookTitle[existingBookTitle.length-1]){
                 inputFailure('No current books exists')
             }
         };
         if (bookTitle === 'None'){
             inputFailure('No book title entered')
         }
-        else if(currPage == 0){
+        else if(currPage === 0){
+            console.log(currPage)
             inputFailure('No current page entered')
         }
         else{
@@ -57,7 +57,7 @@ const InputMenu = (props) => {
             placeholder=" " 
             multiline={true} 
             height={20} 
-            onChangeText={newText => setBookTitle(newText)}
+            onChangeText={setBookTitle}
             />
             <TouchableOpacity onPress={props.bookcreation}>
                 <Text><View style={styles.edit}></View>+ Add New book</Text>
@@ -68,7 +68,7 @@ const InputMenu = (props) => {
             multiline={false} 
             height={20}
             inputMode = "numeric"
-            onChangeText={newText => setcurrPage(newText)}
+            onChangeText={setcurrPage}
             />
             <InputField title="Time spent reading" placeholder="Time in minutes" multiline={false} height={20}/>
             <InputField 
@@ -76,7 +76,7 @@ const InputMenu = (props) => {
             placeholder="Enter your thoughts about the book here!" 
             multiline={true} 
             height={100}
-            onChangeText={newText => setreview(newText)}
+            onChangeText={setreview}
             />
             <TouchableOpacity style={styles.submitButton} onPress={sendData}>
                 <Text style={styles.submitButtonText}>Submit</Text>

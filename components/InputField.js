@@ -3,11 +3,17 @@ import { TouchableOpacity, View, StyleSheet , Text, TextInput} from "react-nativ
 //4 props: Title, placeholder, multiline (bool), height
 
 const InputField = (props) => {
+    let changeText;
+    if (props.onChangeText){
+        changeText = msg =>{
+            props.onChangeText(msg)
+        }
+    }
     return (
     <View>
         <Text style={styles.title}>{props.title}</Text>
         <View style={[styles.inputField, {height: props.height}]}>
-            <TextInput placeholder={props.placeholder} multiline={props.multiline} inputMode={props.inputMode}></TextInput>
+            <TextInput placeholder={props.placeholder} multiline={props.multiline} inputMode={props.inputMode} onChangeText={msg => changeText(msg)}></TextInput>
         </View>
     </View>
     )

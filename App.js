@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import {React, useState, useEffect} from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import Button from "./components/Button";
 import InputMenu from "./components/InputMenu";
@@ -8,7 +8,11 @@ import BookCreation from './components/BookCreation';
 
 
 export default function App() {
-  const [books, setBooks] = useState([{title: "Harry Potter",max:369,curr:0,thoughts:"Blah",time:120}]);
+  const [books, setBooks] = useState([
+    {title: "Harry Potter", max: 369, curr: 10, thoughts: "Blah", time: 120},
+    {title: "The Hobbit", max: 304, curr: 25, thoughts: "Interesting", time: 90},
+    {title: "To Kill a Mockingbird", max: 281, curr: 50, thoughts: "Inspiring", time: 180}
+  ]);
   const [visible, setvisible] = useState(false);
   const [BookCreationStatus, setBookCreationStatus] = useState(false);
   const toggleBookCreation = () => {
