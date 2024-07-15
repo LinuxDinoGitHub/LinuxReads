@@ -23,7 +23,7 @@ export default function App() {
   };
   const retrieveData = data => {
     let temp = books;
-    setBooks({...books, data});
+    setBooks({...books, ...data});
     console.log(data);
   };
   const sendData = () => {

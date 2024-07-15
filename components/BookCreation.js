@@ -9,9 +9,26 @@ const BookCreation = props => {
             <Text style={styles.x}>+</Text>
         </TouchableOpacity>
         <Text style={styles.title}>Create New Book Diary</Text>
-            <InputField title="New book name" placeholder="Enter title of your book" multiline={true} height={50} style={styles.input}/>
-            <InputField title="Author" placeholder="Enter author of book" multiline={true} height={50} style={styles.input}/>
-            <InputField title="Pages" placeholder="Enter max page of your book" multiline={true} height={50} style={styles.input}/>
+            <InputField 
+            title="New book name" 
+            placeholder="Enter title of your book" 
+            multiline={true} height={50} 
+            style={styles.input}
+            />
+            <InputField 
+            title="Author" 
+            placeholder="Enter author of book" 
+            multiline={true} 
+            height={50} 
+            style={styles.input}
+            />
+            <InputField 
+            title="Pages" 
+            placeholder="Enter max page of your book" 
+            multiline={true} 
+            height={50} 
+            style={styles.input}
+            />
             <TouchableOpacity style={styles.submitButton} onPress={props.event}>
                 <Text style={styles.submitButtonText}>Save</Text>
             </TouchableOpacity>

@@ -46,8 +46,10 @@ const InputMenu = (props) => {
             inputFailure('No current page entered')
         }
         else{
-            props.event2({bookTitle: {"max": maxPage, "curr": currPage, "thoughts": review, "time": time}})
-            props.event()
+            let x = {[bookTitle]: {"max": existingBooks[bookTitle].max, "curr": currPage, "thoughts": review, "time": time}};
+            seterrorMessage(false);
+            props.event2(x);
+            props.event();
         }
     };
     return (
