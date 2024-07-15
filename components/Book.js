@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     container:{
         width: '90%',
         zIndex: -4,
+        marginBottom: 10,
     },
     BackgroundImage:{
         minHeight: 100,
