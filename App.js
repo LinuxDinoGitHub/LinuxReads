@@ -5,33 +5,16 @@ import InputMenu from "./components/InputMenu";
 import Book from './components/Book';
 import BookCreation from './components/BookCreation';
 
-let bookCreationStatus = false;
 
 export default function App() {
   const [books, setBooks] = useState(
     {"Example": [{ max: 369, curr: 10, thoughts: "Blah", time: 120, index: 0, author: 'LinuxDino'}]},
   );
-  const animation = useRef(new Animated.Value(500)).current;
-  const toggleMenu = () => {
-    Animated.timing(animation, {
-      toValue: visible ? 500 : 0,
-      duration: 500,
-      useNativeDriver: true,
-    }).start()
-  }
-  const translationMenu = {
-    transform: [
-      {
-        translateY: animation
-      }
-    ]
-  }
 
   const [visible, setvisible] = useState(false);
   const [BookCreationStatus, setBookCreationStatus] = useState(false);
   const toggleBookCreation = () => {
       setBookCreationStatus(!BookCreationStatus);
-      bookCreationStatus = !bookCreationStatus;
       console.log(BookCreationStatus);
   };
   const openBookInput = () => {
@@ -48,6 +31,15 @@ export default function App() {
   }
   const sendData = () => {
     return books;
+  }
+  const animation = useRef(new Animated.Value(500)).current;
+
+  const toggleMenu = () => {
+    Animated.timing(animation, {
+      toValue: visible ? 500 : 0,
+      duration: 500,
+      useNativeDriver: true,
+    }).start()
   }
   return (
     <View style={styles.container}>
@@ -70,7 +62,7 @@ export default function App() {
       ) : (
         <Text>No books to display.</Text>
       )}
-      <View style={[styles.bookCre, {zIndex: bookCreationStatus ? 100 : 98}]}>
+      <View style={[styles.bookCre, {zIndex: BookCreationStatus ? 100 : 98}]}>
         <BookCreation 
               stylep={BookCreationStatus ? styles.show: styles.hide}
               event={toggleBookCreation}
@@ -79,13 +71,18 @@ export default function App() {
         />
       </View>
       <Animated.View
-        style={[styles.inputMenu, translationMenu]}
+        style={[styles.inputMenu, {
+          transform: [
+            {
+              translateY: animation
+            }
+          ]
+        }]}
       >
         <InputMenu 
         bookcreation={toggleBookCreation}
         event={openBookInput} 
         event2={retrieveData}
-        stylep={visible ? styles.show: styles.hide}
         data = {sendData}
         />
       </Animated.View>

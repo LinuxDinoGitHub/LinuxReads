@@ -63,7 +63,7 @@ const InputMenu = (props) => {
     };
     return (
     <View>
-        <View style={[styles.container, props.stylep]}>
+        <View style={styles.container}>
             <TouchableOpacity style={styles.close} onPress={props.event}>
                 <Text style={styles.x}>+</Text>
             </TouchableOpacity>
