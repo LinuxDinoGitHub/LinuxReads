@@ -37,7 +37,6 @@ export default function App() {
         <Text style={styles.title}>Linux Reads</Text>
       </View>
       <View style={styles.books}>
-       <View style={styles.books}>
       {Object.entries(books).length > 0 ? (
         Object.entries(books).map(([title, book], index) => (
           <Book
@@ -50,7 +49,6 @@ export default function App() {
       ) : (
         <Text>No books to display.</Text>
       )}
-    </View>
       </View>
       <BookCreation 
             stylep={BookCreationStatus ? styles.show: styles.hide}
@@ -76,11 +74,13 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'black',
   },
   title: {
     fontSize: 24,
+    color: 'white',
   },
   buttonContainer: {
     position: 'absolute',
@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     paddingTop: 0,
+    zIndex: -99,
   },
   textContainer: {
     position: 'relative',
@@ -107,11 +108,13 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   inputMenu:{
+    zIndex: -9,
     position: 'absolute',
+    bottom: 0,
   },
   bookCre:{
-    zIndex: 999,
     position: 'absolute',
-    top: 100,
+    zIndex: 99,
+    top: 1000,
   }
 });

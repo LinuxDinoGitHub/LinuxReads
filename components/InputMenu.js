@@ -99,6 +99,7 @@ const InputMenu = (props) => {
 };
 const styles = StyleSheet.create({
     container:{
+        width: '100%',
         backgroundColor: '#e0dbce',
         padding: 20,
         borderTopLeftRadius: 20,
@@ -140,6 +141,9 @@ const styles = StyleSheet.create({
     error:{
         color: 'red',
         width: '70%',
+    },
+    wave: {
+        zIndex: 5,
     }
 });
 
