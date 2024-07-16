@@ -65,7 +65,9 @@ const InputMenu = (props) => {
     <View>
         <View style={styles.container}>
             <TouchableOpacity style={styles.close} onPress={props.event}>
-                <Text style={styles.x}>+</Text>
+                <View style={styles.closeContainer}>
+                    <Text style={styles.x}>+</Text>
+                </View>
             </TouchableOpacity>
             <InputField 
             title="Book Title" 
@@ -136,11 +138,20 @@ const styles = StyleSheet.create({
         width: 35,
         maxWidth: 'fit-content',
     },
+    closeContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        zIndex: 999,
+    },
     x: {
         fontSize: 35,
         transform: [
             { rotateZ: '45deg' }
         ],
+        zIndex: -99,
     },
     error:{
         color: 'red',

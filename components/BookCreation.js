@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         width: '80%',
         padding: 20,
+        zIndex: 1,
     },
     submitButton: {
         backgroundColor: '#62929E',
@@ -93,17 +94,24 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 10,
         right: 10,
-        height: 35,
-        width: 35,
+        height: 45,
+        width: 45,
         maxWidth: 'fit-content',
     },
+    closeContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        zIndex: 999,
+    },
     x: {
-        fontSize: 35,
+        marginLeft: 16,
+        fontSize: 45,
         transform: [
             { rotateZ: '45deg' }
         ],
-        height: '100%',
-        width: '100%',
     },
     error:{
         color: 'red',

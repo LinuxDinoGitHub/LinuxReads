@@ -62,7 +62,8 @@ export default function App() {
       ) : (
         <Text>No books to display.</Text>
       )}
-      <View style={[styles.bookCre, {zIndex: BookCreationStatus ? 100 : 98}]}>
+      <View style={[styles.background, BookCreationStatus ? styles.show: styles.hide]}></View>
+      <View style={[styles.bookCre, {zIndex: BookCreationStatus ? 101 : 98}]}>
         <BookCreation 
               stylep={BookCreationStatus ? styles.show: styles.hide}
               event={toggleBookCreation}
@@ -98,6 +99,14 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     backgroundColor: '#393D3F',
+  },
+  background:{
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    zIndex: 100,
+    backgroundColor: 'black',
+    opacity: 0.4,
   },
   title: {
     fontSize: 24,
