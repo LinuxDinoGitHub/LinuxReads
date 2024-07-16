@@ -1,5 +1,5 @@
-import {React, useState, useEffect} from 'react';
-import { StyleSheet, Text, View, ScrollView , Animated} from 'react-native';
+import {React, useState, useEffect , useRef} from 'react';
+import { StyleSheet, Text, View, FlatList , Animated} from 'react-native';
 import Button from "./components/Button";
 import InputMenu from "./components/InputMenu";
 import Book from './components/Book';
@@ -11,12 +11,12 @@ export default function App() {
   const [books, setBooks] = useState(
     {"Example": [{ max: 369, curr: 10, thoughts: "Blah", time: 120, index: 0, author: 'LinuxDino'}]},
   );
-  const [animation] = useState(new Animated.Value(-300));
+  const animation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    Animated.timing(animation, {
-      toValue: 0,
-      duration: 500,
+    Animated.spring(animation, {
+      toValue: 400,
+      duration: 1000,
       useNativeDriver: true,
     }).start();
   }, [animation]);
@@ -47,20 +47,22 @@ export default function App() {
       <View style={styles.textContainer}>
         <Text style={styles.title}>Linux Reads</Text>
       </View>
-      <View style={[styles.books, {zIndex: visible ? 97 : 100}]}>
       {Object.entries(books).length > 0 ? (
-        Object.entries(books).map(([title, book], index) => (
+        <FlatList
+        style={[styles.booksFlat, {zIndex: visible ? 97 : 100}]}
+        data={Object.keys(books)}
+        renderItem={({ item }) => (
           <Book
-            key={title}
-            title={title}
-            maxPage={book[0].max}
-            currPage={book[book.length-1].curr}
+            title={item}
+            maxPage={books[item][0].max}
+            currPage={books[item][books[item].length - 1].curr}
           />
-        ))
+        )}
+        keyExtractor={(item) => item}
+      />
       ) : (
         <Text>No books to display.</Text>
       )}
-      </View>
       <View style={[styles.bookCre, {zIndex: bookCreationStatus ? 100 : 98}]}>
         <BookCreation 
               stylep={BookCreationStatus ? styles.show: styles.hide}
@@ -119,12 +121,12 @@ const styles = StyleSheet.create({
   hide: {
     display: 'none',
   },
-  books: {
-    flex: 1,
+  booksFlat: {
+    flexGrow: 1,
     flexDirection: 'column',
-    alignItems: 'center',
     width: '100%',
     paddingTop: 0,
+    marginLeft: 20, 
   },
   textContainer: {
     position: 'relative',

@@ -9,6 +9,7 @@ const InputMenu = (props) => {
     Entry comments (text area)
     Submit button
     */
+    
     const [errorMessage, seterrorMessage] = useState('');
     const [existingBooks, setExistingBooks] = useState({});
     const [bookTitle, setBookTitle] = useState('None')
