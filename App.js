@@ -11,15 +11,21 @@ export default function App() {
   const [books, setBooks] = useState(
     {"Example": [{ max: 369, curr: 10, thoughts: "Blah", time: 120, index: 0, author: 'LinuxDino'}]},
   );
-  const animation = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    Animated.spring(animation, {
-      toValue: 400,
-      duration: 1000,
+  const animation = useRef(new Animated.Value(500)).current;
+  const toggleMenu = () => {
+    Animated.timing(animation, {
+      toValue: visible ? 500 : 0,
+      duration: 500,
       useNativeDriver: true,
-    }).start();
-  }, [animation]);
+    }).start()
+  }
+  const translationMenu = {
+    transform: [
+      {
+        translateY: animation
+      }
+    ]
+  }
 
   const [visible, setvisible] = useState(false);
   const [BookCreationStatus, setBookCreationStatus] = useState(false);
@@ -30,6 +36,7 @@ export default function App() {
   };
   const openBookInput = () => {
     setvisible(!visible);
+    toggleMenu();
     console.log(visible);
   };
   const retrieveData = data => {
@@ -72,16 +79,7 @@ export default function App() {
         />
       </View>
       <Animated.View
-        style={[
-          styles.inputMenu,
-          {
-            transform: [
-              {
-                translateY: animation,
-              },
-            ],
-          },
-        ]}
+        style={[styles.inputMenu, translationMenu]}
       >
         <InputMenu 
         bookcreation={toggleBookCreation}
