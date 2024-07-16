@@ -1,5 +1,5 @@
 import {React, useState, useEffect} from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView , Animated} from 'react-native';
 import Button from "./components/Button";
 import InputMenu from "./components/InputMenu";
 import Book from './components/Book';
@@ -11,11 +11,21 @@ export default function App() {
   const [books, setBooks] = useState(
     {"Example": [{ max: 369, curr: 10, thoughts: "Blah", time: 120, index: 0, author: 'LinuxDino'}]},
   );
+  const [animation] = useState(new Animated.Value(-300));
+
+  useEffect(() => {
+    Animated.timing(animation, {
+      toValue: 0,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+  }, [animation]);
+
   const [visible, setvisible] = useState(false);
   const [BookCreationStatus, setBookCreationStatus] = useState(false);
   const toggleBookCreation = () => {
       setBookCreationStatus(!BookCreationStatus);
-      bookCreationStatus = !BookCreationStatus;
+      bookCreationStatus = !bookCreationStatus;
       console.log(BookCreationStatus);
   };
   const openBookInput = () => {
@@ -37,7 +47,7 @@ export default function App() {
       <View style={styles.textContainer}>
         <Text style={styles.title}>Linux Reads</Text>
       </View>
-      <View style={styles.books}>
+      <View style={[styles.books, {zIndex: visible ? 97 : 100}]}>
       {Object.entries(books).length > 0 ? (
         Object.entries(books).map(([title, book], index) => (
           <Book
@@ -51,7 +61,7 @@ export default function App() {
         <Text>No books to display.</Text>
       )}
       </View>
-      <View style={styles.bookCre}>
+      <View style={[styles.bookCre, {zIndex: bookCreationStatus ? 100 : 98}]}>
         <BookCreation 
               stylep={BookCreationStatus ? styles.show: styles.hide}
               event={toggleBookCreation}
@@ -59,7 +69,18 @@ export default function App() {
               retrieve = {retrieveNewBook}
         />
       </View>
-      <View style={styles.inputMenu}>
+      <Animated.View
+        style={[
+          styles.inputMenu,
+          {
+            transform: [
+              {
+                translateY: animation,
+              },
+            ],
+          },
+        ]}
+      >
         <InputMenu 
         bookcreation={toggleBookCreation}
         event={openBookInput} 
@@ -67,7 +88,7 @@ export default function App() {
         stylep={visible ? styles.show: styles.hide}
         data = {sendData}
         />
-      </View>
+      </Animated.View>
       <View style={styles.buttonContainer}>
         <Button onClick={openBookInput} content="+"/>
       </View>
@@ -104,7 +125,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     paddingTop: 0,
-    zIndex: -99,
   },
   textContainer: {
     position: 'relative',
@@ -125,6 +145,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    zIndex: bookCreationStatus ? 98 : 100,
   }
 });

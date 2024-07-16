@@ -102,6 +102,8 @@ const styles = StyleSheet.create({
         transform: [
             { rotateZ: '45deg' }
         ],
+        height: '100%',
+        width: '100%',
     },
     error:{
         color: 'red',

@@ -45,6 +45,9 @@ const InputMenu = (props) => {
         else if(currPage === 0){
             inputFailure('No current page entered')
         }
+        else if(currPage > maxPage){
+            inputFailure('The page you entered does not exist in this book (exceeds maximum)')
+        }
         else{
             let nextIndex = parseInt(existingBooks[bookTitle][existingBooks[bookTitle].length-1].index)+1;
             let x = {[bookTitle]: 

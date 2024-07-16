@@ -1,5 +1,5 @@
 import {React} from "react";
-import { TouchableOpacity, View, StyleSheet , Text, TextInput} from "react-native";
+import {View, StyleSheet , Text, TextInput} from "react-native";
 //4 props: Title, placeholder, multiline (bool), height
 
 const InputField = (props) => {
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
         fontFamily: 'monospace',
     },
     input: {
-        borderStyle: 'hidden',
         borderRadius: 5,
         backgroundColor: '#D3D3D3',
         height: '120%',
