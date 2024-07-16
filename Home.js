@@ -42,9 +42,15 @@ export default function Home({route, navigation}) {
     }).start()
   }
 
-  const navigateBook = e => {
-    console.log(books[e.target.title])
-    navigation.navigate('BookLog', {data: books[e.target.title]})
+  const getTitle = title => {
+    navigateBook(title)
+  }
+  const navigateBook = title => {
+    console.log(title)
+    navigation.navigate('BookLog', 
+        {data: books,
+        title: title
+        })
   }
   return (
     <View style={styles.container}>
@@ -60,7 +66,7 @@ export default function Home({route, navigation}) {
             title={item}
             maxPage={books[item][0].max}
             currPage={books[item][books[item].length - 1].curr}
-            navigate={navigateBook}
+            getTitle={getTitle}
           />
         )}
         keyExtractor={(item) => item}

@@ -5,8 +5,11 @@ const Book = props => {
     const maxPage = props.maxPage
     const currPage = props.currPage
     const percentageRead = Math.round((currPage/maxPage)*1000)/10
+    const sendTitle = () => {
+        props.getTitle(props.title)
+    }
     return (
-        <TouchableOpacity style={styles.container} onPress={props.navigate}>
+        <TouchableOpacity style={styles.container} onPress={sendTitle}>
             <View style={styles.BackgroundImage}>
                 <Text style={styles.header}>{props.title}</Text>
                 <Text style={styles.percentageRead}>Percentage read: {percentageRead}%</Text>
