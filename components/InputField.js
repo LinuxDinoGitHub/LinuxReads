@@ -13,7 +13,7 @@ const InputField = (props) => {
     <View>
         <Text style={styles.title}>{props.title}</Text>
         <View style={[styles.inputField, {height: props.height}]}>
-            <TextInput placeholder={props.placeholder} multiline={props.multiline} inputMode={props.inputMode} onChangeText={msg => changeText(msg)}></TextInput>
+            <TextInput placeholder={props.placeholder} multiline={props.multiline} inputMode={props.inputMode} onChangeText={msg => changeText(msg)} style={styles.input}></TextInput>
         </View>
     </View>
     )
@@ -21,15 +21,19 @@ const InputField = (props) => {
 const styles = StyleSheet.create({
     inputField: {
         width: '80%',
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
         paddingHorizontal: 10,
         marginVertical: 10,
     },
     title: {
-        fontSize: 20,
+        fontSize: 18,
         fontStyle: 'bold',
+        fontFamily: 'monospace',
     },
+    input: {
+        borderStyle: 'hidden',
+        borderRadius: 5,
+        backgroundColor: '#D3D3D3',
+        height: '120%',
+    }
 })
 export default InputField;

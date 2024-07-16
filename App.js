@@ -5,7 +5,7 @@ import InputMenu from "./components/InputMenu";
 import Book from './components/Book';
 import BookCreation from './components/BookCreation';
 
-
+let bookCreationStatus = false;
 
 export default function App() {
   const [books, setBooks] = useState(
@@ -15,6 +15,7 @@ export default function App() {
   const [BookCreationStatus, setBookCreationStatus] = useState(false);
   const toggleBookCreation = () => {
       setBookCreationStatus(!BookCreationStatus);
+      bookCreationStatus = !BookCreationStatus;
       console.log(BookCreationStatus);
   };
   const openBookInput = () => {
@@ -50,21 +51,23 @@ export default function App() {
         <Text>No books to display.</Text>
       )}
       </View>
-      <BookCreation 
-            stylep={BookCreationStatus ? styles.show: styles.hide}
-            event={toggleBookCreation}
-            style={styles.bookCre}
-            data = {sendData}
-            retrieve = {retrieveNewBook}
-      />
-      <InputMenu 
-      bookcreation={toggleBookCreation}
-      event={openBookInput} 
-      event2={retrieveData}
-      stylep={visible ? styles.show: styles.hide}
-      style={styles.inputMenu}
-      data = {sendData}
-      />
+      <View style={styles.bookCre}>
+        <BookCreation 
+              stylep={BookCreationStatus ? styles.show: styles.hide}
+              event={toggleBookCreation}
+              data = {sendData}
+              retrieve = {retrieveNewBook}
+        />
+      </View>
+      <View style={styles.inputMenu}>
+        <InputMenu 
+        bookcreation={toggleBookCreation}
+        event={openBookInput} 
+        event2={retrieveData}
+        stylep={visible ? styles.show: styles.hide}
+        data = {sendData}
+        />
+      </View>
       <View style={styles.buttonContainer}>
         <Button onClick={openBookInput} content="+"/>
       </View>
@@ -76,16 +79,18 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
     width: '100%',
-    backgroundColor: 'black',
+    backgroundColor: '#393D3F',
   },
   title: {
     fontSize: 24,
+    fontFamily: 'monospace',
     color: 'white',
   },
   buttonContainer: {
     position: 'absolute',
     bottom: 40,
     right: 30,
+    zIndex: 999,
   },
   show: {
     display: 'flex',
@@ -108,13 +113,18 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   inputMenu:{
-    zIndex: -9,
+    zIndex: 99,
     position: 'absolute',
     bottom: 0,
+    width: '100%',
   },
   bookCre:{
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     position: 'absolute',
-    zIndex: 99,
-    top: 1000,
+    zIndex: bookCreationStatus ? 98 : 100,
   }
 });

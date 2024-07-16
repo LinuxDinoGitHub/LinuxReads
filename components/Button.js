@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         height: 70,
         width: 70,
-        backgroundColor: "blue"
+        backgroundColor: "#546A7B"
     },
     wrapper: {
         display: "flex"

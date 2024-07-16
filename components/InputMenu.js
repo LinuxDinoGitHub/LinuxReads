@@ -100,13 +100,13 @@ const InputMenu = (props) => {
 const styles = StyleSheet.create({
     container:{
         width: '100%',
-        backgroundColor: '#e0dbce',
+        backgroundColor: '#C6C5B9',
         padding: 20,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
     },
     submitButton: {
-        backgroundColor: '#007bff',
+        backgroundColor: '#62929E',
         paddingVertical: 12,
         paddingHorizontal: 24,
         borderRadius: 5,

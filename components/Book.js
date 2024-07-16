@@ -25,11 +25,12 @@ const styles = StyleSheet.create({
     BackgroundImage:{
         minHeight: 100,
         maxHeight: 500,
-        backgroundColor: '#d4d0c7',
+        backgroundColor: '#62929E',
         borderRadius: 10,
         paddingBottom: 10,
     },
     header:{
+        fontFamily: 'monospace',
         position: 'relative',
         top: 10,
         left: 10,
@@ -37,11 +38,13 @@ const styles = StyleSheet.create({
         width: '60%',
     },
     percentageRead:{
+        fontFamily: 'monospace',
         position: 'absolute',
         bottom: 10,
         right: 10,
     },
     percentageRead2:{
+        fontFamily: 'monospace',
         position: 'absolute',
         top: 10,
         right: 10,

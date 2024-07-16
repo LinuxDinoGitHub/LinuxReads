@@ -71,18 +71,23 @@ const styles = StyleSheet.create({
         minHeight: 250,
         backgroundColor: '#E5E4E2',
         borderRadius: 10,
-        padding: 50,
+        width: '80%',
+        padding: 20,
     },
     submitButton: {
-        backgroundColor: '#007bff',
+        backgroundColor: '#62929E',
         padding: 5,
         borderRadius: 5,
-        width: '40%'
+        width: '40%',
+        height: 40,
     },
     submitButtonText: {
         color: '#fff',
         fontSize: 16,
         fontWeight: 'bold',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
     },
     close: {
         position: 'absolute',
@@ -101,6 +106,9 @@ const styles = StyleSheet.create({
     error:{
         color: 'red',
         width: '70%',
+    },
+    title: {
+        fontFamily: 'monospace',
     }
 })
 
